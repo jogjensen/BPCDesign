@@ -35,6 +35,7 @@ class _loginPageState extends State<loginPage> {
             key: globalFormKey,
             child: Column(
                 children: <Widget>[
+
                   const SizedBox(height: 40,),
                   Image.asset('assets/logo.png', width: 120.0,),
 
@@ -43,7 +44,8 @@ class _loginPageState extends State<loginPage> {
 
                   const SizedBox(height: 60.0,),
 
-                  TextFormField(
+
+            TextFormField(
                     keyboardType: TextInputType.emailAddress,
                     onSaved: (input) => requestModel.email = input!,
                     validator: (input) {
@@ -58,11 +60,13 @@ class _loginPageState extends State<loginPage> {
                       labelStyle: TextStyle(fontSize: 20),
                       filled: true,
                     )),
-                  ),
+               ),
+
 
                   const SizedBox(height: 20.0,),
 
-                  TextFormField(
+            TextFormField(
+
                     obscureText: true,
                     onSaved: (input) => requestModel.password = input!,
                     validator: (input) {
@@ -76,7 +80,8 @@ class _loginPageState extends State<loginPage> {
                       labelStyle: TextStyle(fontSize: 20),
                       filled: true,
                     )),
-                  ),
+            ),
+
 
                   const SizedBox(height: 20.0,),
                   Column(
