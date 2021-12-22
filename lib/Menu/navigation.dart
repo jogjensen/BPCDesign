@@ -1,3 +1,4 @@
+import 'package:designbpc/Menu/menupage.dart';
 import 'package:designbpc/jobpages/MyJobs/myjobs.dart';
 import 'package:designbpc/jobpages/NewJob/newjobs.dart';
 import 'package:designbpc/jobpages/DoneJobs/donejobs.dart';
@@ -19,32 +20,47 @@ class NavigationDrawerWidget extends StatelessWidget {
           child: ListView(
             padding: padding,
             children: <Widget>[
+
               const SizedBox(height: 48),
+              buildMenuItem(
+                text: 'Frontpage',
+                icon: Icons.people,
+                onClicked: () => selectedItem(context, 6),
+              ),
+              const SizedBox(height: 24,),
+              const Divider(color: Colors.white,),
+              const SizedBox(height: 24,),
+
               buildMenuItem(
                 text: 'New jobs',
                 icon: Icons.people,
                 onClicked: () => selectedItem(context, 0),
               ),
+
               const SizedBox(height: 16,),
               buildMenuItem(
                 text: 'My jobs',
                 icon: Icons.directions_car_outlined,
                 onClicked: () => selectedItem(context, 1),
               ),
+
               const SizedBox(height: 16,),
               buildMenuItem(
                 text: 'Done jobs',
                 icon: Icons.directions_car_rounded,
                 onClicked: () => selectedItem(context, 2),
               ),
+
               const SizedBox(height: 24,),
               const Divider(color: Colors.white70,),
               const SizedBox(height: 24,),
+
               buildMenuItem(
                 text: 'Support',
                 icon: Icons.support,
                 onClicked: () => selectedItem(context, 3),
               ),
+
               const SizedBox(height: 16,),
               buildMenuItem(
                 text: 'Settings',
@@ -54,6 +70,7 @@ class NavigationDrawerWidget extends StatelessWidget {
               const SizedBox(height: 24,),
               const Divider(color: Colors.white70,),
               const SizedBox(height: 24,),
+
               buildMenuItem(
                 text: 'Log out',
                 icon: Icons.settings,
@@ -115,6 +132,12 @@ class NavigationDrawerWidget extends StatelessWidget {
             MaterialPageRoute(builder: (context) => loginPage()
             ));
         break;
+      case 6:
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => menuPage()
+            ));
+        break;
+
     }
   }
 

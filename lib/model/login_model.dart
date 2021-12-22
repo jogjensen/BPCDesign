@@ -1,13 +1,40 @@
-class LoginResponseModel {
-  final String token;
-  final String error;
+class Data {
+  Data({
+    this.token,
+  });
 
-  LoginResponseModel({required this.token, required this.error});
+  String? token;
+
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
+    token: json["token"] ?? "",
+  );
+}
+
+class Error {
+  Error({
+    this.message,
+  });
+
+  String? message;
+
+  factory Error.fromJson(Map<String, dynamic> json) => Error(
+    message: json["message"] ?? "",
+  );
+}
+
+class LoginResponseModel {
+  final Data? data;
+  final Error error;
+
+  LoginResponseModel({
+    required this.data,
+    required this.error,
+  });
 
   factory LoginResponseModel.fromJson(Map<String, dynamic> json) {
     return LoginResponseModel(
-      token: json["token"] != null ? json["token"] : "",
-      error: json["error"] != null ? json["error"] : "",
+      data: Data.fromJson(json["data"] ?? {}),
+      error: Error.fromJson(json["error"] ?? {}),
     );
   }
 }
