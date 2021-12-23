@@ -1,9 +1,11 @@
 class Data {
   Data({
     this.token,
+
   });
 
   String? token;
+
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
     token: json["token"] ?? "",

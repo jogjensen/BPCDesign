@@ -56,8 +56,9 @@ class menuPage extends StatelessWidget {
            textColor: Colors.black,
            splashColor: Colors.black,
            child: Container(
-             decoration: const BoxDecoration(
-               image: DecorationImage(
+             decoration: BoxDecoration(
+               border: Border.all(width: 1.0, color: const Color(0xFF000000)),
+               image: const DecorationImage(
                  image: AssetImage('assets/maps.png'),
                  fit: BoxFit.cover),
 
@@ -79,23 +80,14 @@ class menuPage extends StatelessWidget {
        ),
 
 
-
-       ElevatedButton(
-         child: Text('MENU'),
-         style: ElevatedButton.styleFrom(primary: Colors.blueAccent),
-         onPressed: () {
-           Navigator.push(context, MaterialPageRoute(builder: (context) => NavigationDrawerWidget()),
-           );
-         },
-       ),
-
         MaterialButton(
           padding: const EdgeInsets.all(1.0),
           textColor: Colors.black,
           splashColor: Colors.black,
           child: Container(
-              decoration: const BoxDecoration(
-                image: DecorationImage(
+              decoration: BoxDecoration(
+                border: Border.all(width: 1.0, color: const Color(0xFF000000)),
+                image: const DecorationImage(
                     image: AssetImage('assets/VejD.png'),
                     fit: BoxFit.cover),
 
@@ -113,7 +105,7 @@ class menuPage extends StatelessWidget {
                 ),
               )
           ),
-          onPressed: _launchURLMaps,
+          onPressed: _launchURL,
         ),
 
 
