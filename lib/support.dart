@@ -10,8 +10,9 @@ class SupportPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Support'),
         centerTitle: true,
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.orange,
       ),
+      body: const Text("hello"),
     );
   }
 }

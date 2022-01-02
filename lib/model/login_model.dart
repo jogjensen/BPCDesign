@@ -1,11 +1,9 @@
 class Data {
   Data({
     this.token,
-
   });
 
   String? token;
-
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
     token: json["token"] ?? "",
@@ -26,11 +24,11 @@ class Error {
 
 class LoginResponseModel {
   final Data? data;
-  final Error error;
+  final Error? error;
 
   LoginResponseModel({
-    required this.data,
-    required this.error,
+    this.data,
+    this.error,
   });
 
   factory LoginResponseModel.fromJson(Map<String, dynamic> json) {

@@ -102,13 +102,13 @@ class _loginPageState extends State<loginPage> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (_) => const menuPage(),
+                                      builder: (_) => menuPage(),
                                     ),
                                   );
                                 } else {
                                   var snackBar = SnackBar(
                                     content: Text(
-                                      value.error.message!.toString(),
+                                      value.error!.message!.toString(),
                                       style: const TextStyle(
                                         fontSize: 18,
                                       ),
