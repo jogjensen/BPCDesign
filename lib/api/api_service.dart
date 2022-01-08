@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:designbpc/jobpages/MyJobs/joblist_model.dart';
 import 'package:designbpc/jobpages/NewJob/newJobs_model.dart';
 import 'package:designbpc/jobpages/DoneJobs/donejobs_model.dart';
@@ -45,28 +43,17 @@ class APIService {
   //API for logout
   Future logOut() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    SharedPreferences UserPrefs = await SharedPreferences.getInstance();
 
     String? userId = prefs.getString('userId');
 
     String url =
-        "http://api.bookpilotcar.com/api/account/logout?user_id=${userId}";
-    final response = await http.post(
-      Uri.parse(
-          url
-      ),
-      headers: {
-        "UserAgent": "Android"
-      },
+        "http://api.bookpilotcar.com/api/account/logout?user_id=$userId";
+    var response = await http.post(
+      Uri.parse(url),
+      headers: {"UserAgent": "Android"},
     );
-    if (response.statusCode == 200 || response.statusCode == 400) {
-      return response;
-        } else {
-        throw (Exception);
-        }
-    }
-
-
+    return json.decode(response.body);
+  }
 
 // API for jobList
   Future<JobList> jobList() async {

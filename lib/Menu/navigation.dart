@@ -15,6 +15,7 @@ class NavigationDrawerWidget extends StatelessWidget {
   LoginResponseModel loginResponseModel = LoginResponseModel();
   NavigationDrawerWidget({Key? key}) : super(key: key);
   final padding = EdgeInsets.symmetric(horizontal: 20);
+  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -51,8 +52,6 @@ class NavigationDrawerWidget extends StatelessWidget {
                 text: 'My jobs',
                 icon: Icons.directions_car_outlined,
                 onClicked: () {
-                  // APIService().jobList(loginResponseModel.data!.token!);
-
                   selectedItem(context, 1);
                 },
               ),
@@ -100,8 +99,31 @@ class NavigationDrawerWidget extends StatelessWidget {
               buildMenuItem(
                 text: 'Log out',
                 icon: Icons.settings,
-                onClicked: () => selectedItem(context, 5),
-              ),
+                onClicked: () => APIService().logOut().then(
+                      (value) {
+                    if (value["data"]["code"] == 200) {
+                      return Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => loginPage(),
+                          ),
+                              (route) => false);
+                    } else {
+                      const snackBar = SnackBar(
+                        duration: Duration(seconds: 5),
+                        content: Text(
+                          "Something went wrong!",
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      );
+                      scaffoldKey.currentState?.showSnackBar(snackBar);
+                    }
+                  },
+                ),
+              )
             ],
           ),
         ));
@@ -133,7 +155,6 @@ class NavigationDrawerWidget extends StatelessWidget {
         break;
       case 1:
         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-          // print("...hello....");
           return MyJobsPage();
         }));
         break;
@@ -149,11 +170,7 @@ class NavigationDrawerWidget extends StatelessWidget {
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => SettingsPage()));
         break;
-      case 5:
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => APIService().logOut().then((value) => menuPage())));
-        break;
-      case 6:
+            case 6:
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => menuPage()));
         break;

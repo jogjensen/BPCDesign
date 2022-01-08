@@ -1,5 +1,4 @@
 // ignore_for_file: file_names, unnecessary_new, deprecated_member_use
-// model to parse json of pending jobs api
 import 'dart:convert';
 
 PendingJob pendingJobFromJson(String str) =>
