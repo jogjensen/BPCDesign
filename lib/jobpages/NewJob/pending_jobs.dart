@@ -1,3 +1,5 @@
+import 'package:designbpc/Menu/menupage.dart';
+import 'package:designbpc/jobpages/NewJob/newjobs.dart';
 import 'package:flutter/material.dart';
 
 import 'newJobs_model.dart';
@@ -5,6 +7,7 @@ import 'newJobs_model.dart';
 class PendingJobsData extends StatelessWidget {
   NewJob? newJob;
   PendingJobsData({this.newJob});
+
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +19,9 @@ class PendingJobsData extends StatelessWidget {
       body: Container(
         width: double.infinity,
         height: MediaQuery.of(context).size.height,
-        color: Colors.green,
+        color: Colors.white,
         child: Card(
-          color: Colors.grey,
+          color: Colors.orangeAccent,
           margin: const EdgeInsets.all(10),
           child: Container(
             padding: EdgeInsets.all(9.0),
@@ -35,7 +38,7 @@ class PendingJobsData extends StatelessWidget {
                   height: 12,
                 ),
                 Text(
-                  "Job Start Time: ${newJob!.startTime!}",
+                  "Truckdriver name & licenseplate: ${newJob!.contactPersonName!}",
                   style: const TextStyle(
                     fontSize: 20,
                   ),
@@ -44,7 +47,7 @@ class PendingJobsData extends StatelessWidget {
                   height: 12,
                 ),
                 Text(
-                  "contact Person Email: ${newJob!.contactPersonEmail!}",
+                  "Truckdriver Email: ${newJob!.contactPersonEmail!}",
                   style: const TextStyle(
                     fontSize: 20,
                   ),
@@ -53,16 +56,7 @@ class PendingJobsData extends StatelessWidget {
                   height: 12,
                 ),
                 Text(
-                  "contact Person Name: ${newJob!.contactPersonName!}",
-                  style: const TextStyle(
-                    fontSize: 20,
-                  ),
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
-                Text(
-                  "contact Person Phone: ${newJob!.contactPersonPhone!}",
+                  "Truckdriver Phone: ${newJob!.contactPersonPhone!}",
                   style: const TextStyle(
                     fontSize: 20,
                   ),
@@ -89,7 +83,7 @@ class PendingJobsData extends StatelessWidget {
                   height: 12,
                 ),
                 Text(
-                  "Job Status: ${newJob!.jobStatus}",
+                  "Start Time: ${newJob!.startTime!}",
                   style: const TextStyle(
                     fontSize: 20,
                   ),
@@ -98,7 +92,7 @@ class PendingJobsData extends StatelessWidget {
                   height: 12,
                 ),
                 Text(
-                  "Earned : ${newJob!.earned!}",
+                  "Start Date: ${newJob!.date!}",
                   style: const TextStyle(
                     fontSize: 20,
                   ),
@@ -113,7 +107,50 @@ class PendingJobsData extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
+                  height: 24,
+                ),
+                SizedBox(
+                  width: double.infinity,
+                height: 60,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.red
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const NewJobsPage()),
+                    );
+                  },
+                  child: const Text(
+                      "Reject",
+                  style: TextStyle(fontSize: 20),
+                  ),
+                ),
+                ),
+                const SizedBox(
                   height: 12,
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  height: 80,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.green
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const NewJobsPage()),
+                      );
+                    },
+                    child: const Text(
+                      "Accept",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
                 ),
               ],
             ),
