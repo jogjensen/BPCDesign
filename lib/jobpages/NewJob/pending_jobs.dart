@@ -116,13 +116,23 @@ class PendingJobsData extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     primary: Colors.red
                   ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const NewJobsPage()),
-                    );
-                  },
+                  onPressed: () => showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        title: const Text("Are you sure you want to reject this job?"),
+                        content: const Text("If you reject this job, it will not be offered again"),
+                        actions: <Widget>[
+                          TextButton(
+                              onPressed: () => Navigator.pop(context, 'Cancel'),
+                              child: const Text('Cancel')
+                          ),
+                          TextButton(
+                              onPressed: () => Navigator.pop(context, 'Cancel'),
+                              child: const Text('Reject')
+                          ),
+                        ],
+                      )
+                  ),
                   child: const Text(
                       "Reject",
                   style: TextStyle(fontSize: 20),
@@ -139,13 +149,24 @@ class PendingJobsData extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                         primary: Colors.green
                     ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const NewJobsPage()),
-                      );
-                    },
+                    onPressed: () => showDialog<String>(
+                        context: context,
+                        builder: (BuildContext context) => AlertDialog(
+                          title: const Text("Are you sure you want to accept this job?"),
+                          content: const Text("If you accept this job, it will be visible in my jobs"),
+                          actions: <Widget>[
+                            TextButton(
+                                onPressed: () => Navigator.pop(context, 'Cancel'),
+                                child: const Text('Cancel')
+                            ),
+                            TextButton(
+                                onPressed: () => Navigator.pop(context, 'Cancel'),
+                                child: const Text('Accept')
+                            ),
+                          ],
+                        ))
+
+                    ,
                     child: const Text(
                       "Accept",
                       style: TextStyle(fontSize: 20),
