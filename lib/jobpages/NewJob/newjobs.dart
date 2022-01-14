@@ -22,6 +22,7 @@ class _NewJobsPageState extends State<NewJobsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+
       /// drawer: NavigationDrawerWidget(),
       appBar: AppBar(
         title: const Text('New jobs'),
@@ -30,23 +31,22 @@ class _NewJobsPageState extends State<NewJobsPage> {
       ),
       body: Column(
         children: [
-      const SizedBox(
-      child: Padding(
-      padding: EdgeInsets.all(8.0),
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-         // color: Colors.lightBlue,
-        ),
-        child: Text(
-          "On this page you are able to see the jobs that you have been offered\n"
-              "if you press a job, more information will be displayed",
-          textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 25),
-
-             ),
+          const SizedBox(
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                    // color: Colors.lightBlue,
+                    ),
+                child: Text(
+                  "On this page you are able to see the jobs that you have been offered\n"
+                  "if you press a job, more information will be displayed",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 25),
+                ),
+              ),
+            ),
           ),
-        ),
-      ),
           Expanded(
             child: FutureBuilder(
               future: pendingJobs,

@@ -32,16 +32,6 @@ class menuPage extends StatelessWidget {
 
             children: <Widget>[
               ElevatedButton(
-                child: const Text('My jobs', style: TextStyle(fontSize: 20),),
-                style: ElevatedButton.styleFrom(primary: Colors.orangeAccent, shape: border),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MyJobsPage()),
-                  );
-                },
-              ),
-              ElevatedButton(
                 child: const Text('New jobs', style: TextStyle(fontSize: 20),),
                 style: ElevatedButton.styleFrom(primary: Colors.orangeAccent, shape: border),
                 onPressed: () {
@@ -51,8 +41,20 @@ class menuPage extends StatelessWidget {
                   );
                 },
               ),
+
               ElevatedButton(
-                child: const Text('Earlier jobs', style: TextStyle(fontSize: 20),),
+                child: const Text('My jobs', style: TextStyle(fontSize: 20),),
+                style: ElevatedButton.styleFrom(primary: Colors.orangeAccent, shape: border),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyJobsPage()),
+                  );
+                },
+              ),
+
+              ElevatedButton(
+                child: const Text('Done jobs', style: TextStyle(fontSize: 20),),
                 style: ElevatedButton.styleFrom(primary: Colors.orangeAccent, shape: border),
                 onPressed: () {
                   Navigator.push(
