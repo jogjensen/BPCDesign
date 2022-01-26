@@ -32,13 +32,13 @@ class _MyJobsPageState extends State<MyJobsPage> {
               padding: EdgeInsets.all(14.0),
               child: DecoratedBox(
                 decoration: BoxDecoration(
-                 // color: Colors.lightBlue,
+                  // color: Colors.lightBlue,
                 ),
                 child: Text(
                   "On this page you are able to see the jobs that you have accepted.\n"
                       "if you press a job, more information will be displayed",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 25),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 25),
 
                 ),
               ),

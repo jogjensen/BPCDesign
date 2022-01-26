@@ -1,6 +1,8 @@
+import 'package:designbpc/Menu/controller.dart';
 import 'package:designbpc/api/api_service.dart';
 import 'package:designbpc/model/login_model.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'Menu/menupage.dart';
 import 'model/login_model.dart';
 
@@ -18,6 +20,16 @@ class _loginPageState extends State<loginPage> {
   void initState() {
     super.initState();
     requestModel = LoginRequestModel(email: '', password: '');
+    init();
+  }
+
+  init() async {
+    SharedPreferences userPrefs = await SharedPreferences.getInstance();
+    var tokk = userPrefs.getString("token");
+    var isLoggedIn = userPrefs.getString("loggedIn");
+    if (isLoggedIn == "Y") {
+      Navigator.push(context, MaterialPageRoute(builder: (_) => menuPage()));
+    }
   }
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -53,9 +65,13 @@ class _loginPageState extends State<loginPage> {
                 TextFormField(
                   keyboardType: TextInputType.emailAddress,
                   onSaved: (input) => requestModel.email = input!,
-                  validator: (input) {
-                    if (input == null || input.isEmpty) {
-                      return 'Please enter some email';
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'enter a valid email';
+                    }
+                    if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                        .hasMatch(value)) {
+                      return 'Please enter a valid Email';
                     }
                     return null;
                   },
@@ -105,6 +121,7 @@ class _loginPageState extends State<loginPage> {
                                       builder: (_) => menuPage(),
                                     ),
                                   );
+                                  Controller().locationService();
                                 } else {
                                   var snackBar = SnackBar(
                                     content: Text(

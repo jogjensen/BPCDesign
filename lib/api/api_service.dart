@@ -11,8 +11,7 @@ class APIService {
   // API for login
   Future<LoginResponseModel> login(LoginRequestModel requestModel) async {
     String url =
-        "https://api.bookpilotcar.com/api/account/login?email=${requestModel
-        .email}&password=${requestModel.password}";
+        "https://api.bookpilotcar.com/api/account/login?email=${requestModel.email}&password=${requestModel.password}";
     final response = await http.post(
       Uri.parse(
         url,
@@ -113,7 +112,6 @@ class APIService {
     }
   }
 
-
 // API for Done jobs
   Future<DoneJob> doneJobs() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -139,5 +137,84 @@ class APIService {
     } else {
       throw (Exception);
     }
+  }
+
+  // api for accept job
+  acceptJob(var jobId) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? userId = prefs.getString('userId');
+    String? token = prefs.getString('token');
+    String url =
+        "http://api.bookpilotcar.com/api/pilotcar/acceptjob?job_id=${jobId}&user_id=${userId}&accepted_on=000000";
+    final response = await http.get(
+      Uri.parse(
+        url,
+      ),
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "token": "$token"
+      },
+    );
+
+    print("accept jobs response code : ${response.statusCode}");
+  }
+
+  // api for reject job
+  rejectJob(var jobId) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? userId = prefs.getString('userId');
+    String? token = prefs.getString('token');
+    String url =
+        "http://api.bookpilotcar.com/api/pilotcar/rejectjob?job_id=${jobId}&user_id=${userId}";
+    final response = await http.get(
+      Uri.parse(
+        url,
+      ),
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "token": "$token"
+      },
+    );
+
+    print("accept jobs response code : ${response.statusCode}");
+  }
+
+  // api to punch a job
+  punchJob(Map values) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? userId = prefs.getString('userId');
+    String? token = prefs.getString('token');
+    String url =
+        "http://api.bookpilotcar.com/api/pilotcar/completejob?job_id=${values["jobId"]}&user_id=${userId}&escort_start=${values["startDate"]}&completed_on=1&escort_end=${values["endDate"]}&waitTimeInHour=${values["waitTimeInHour"]}&waitTimeInMinute=${values["waitTimeInMinute"]}&timeToEscortStartInHour=${values["TimeToEscortStartInHour"]}&timeToEscortStartInMinute=${values["timeToEscortStartInMinute"]}&timeFromEscortEndInHour=${values["timeFromEscortEndInHour"]}&timeFromEscortEndInMinute=${values["timeFromEscortEndInMinute"]}&potentialBridgeFee=${values["potentialBridgeFee"]}&potentialFerryFee=${values["potentialFerryFee"]}&truckLicensePlate=${values["truckLicensePlate"]}";
+    final response = await http.post(
+      Uri.parse(
+        url,
+      ),
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "token": "$token"
+      },
+    );
+    return response;
+  }
+
+  // api for update location
+  updateLocation(latitude, longitude) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? userId = prefs.getString('userId');
+    String? token = prefs.getString('token');
+    String url =
+        "http://api.bookpilotcar.com/api/pilotcar/updatecarlocation?user_id=${userId}&lat=$latitude&lang=$longitude";
+    final response = await http.get(
+      Uri.parse(
+        url,
+      ),
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "token": "$token"
+      },
+    );
+    print("called location...");
+    return response;
   }
 }

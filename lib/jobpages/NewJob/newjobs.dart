@@ -1,6 +1,6 @@
 import 'package:designbpc/api/api_service.dart';
 import 'package:designbpc/jobpages/NewJob/newJobs_model.dart';
-import 'package:designbpc/jobpages/NewJob/pending_jobs.dart';
+import 'package:designbpc/jobpages/NewJob/pendingdesc.dart';
 import 'package:flutter/material.dart';
 
 class NewJobsPage extends StatefulWidget {
@@ -85,7 +85,7 @@ class _NewJobsPageState extends State<NewJobsPage> {
       },
       child: Container(
         color: Colors.white,
-        height: 210,
+
         width: double.infinity,
         child: Card(
           color: Colors.orangeAccent,
@@ -119,7 +119,14 @@ class _NewJobsPageState extends State<NewJobsPage> {
                 Text(
                   "Start time: ${jobss[index].startTime}",
                   style: const TextStyle(fontSize: 18),
-                )
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  "Transported: ${jobss[index].whatIsTransported}",
+                  style: const TextStyle(fontSize: 18),
+                ),
+                const SizedBox(height: 10,)
+
               ],
             ),
           ),

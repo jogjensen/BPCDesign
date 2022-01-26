@@ -1,11 +1,19 @@
 import 'dart:io';
 
+import 'package:designbpc/Menu/controller.dart';
 import 'package:designbpc/loginpage.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
   HttpOverrides.global = MyHttpOverrides();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? userId = prefs.getString('loggedIn');
+
+  if (userId == "Y") {
+    Controller().locationService();
+  }
 }
 
 class MyHttpOverrides extends HttpOverrides {

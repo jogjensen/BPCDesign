@@ -1,15 +1,49 @@
+import 'dart:async';
+import 'dart:math';
+
+import 'package:designbpc/Menu/controller.dart';
 import 'package:designbpc/Menu/navigation.dart';
-import 'package:designbpc/api/api_service.dart';
 import 'package:designbpc/jobpages/DoneJobs/donejobs.dart';
 import 'package:designbpc/jobpages/MyJobs/myjobs.dart';
 import 'package:designbpc/jobpages/NewJob/newjobs.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../main.dart';
+class menuPage extends StatefulWidget {
+  @override
+  State<menuPage> createState() => _menuPageState();
+}
 
-class menuPage extends StatelessWidget {
+class _menuPageState extends State<menuPage> {
+  Timer? timer;
+  Random random =  Random();
+  var randomNumber = 10;
+
+  @override
+  void initState() {
+    super.initState();
+
+    timer = Timer.periodic(
+      Duration(minutes: randomNumber),
+          (Timer t) async {
+        init();
+        Controller().locationService();
+      },
+    );
+  }
+
+  init() {
+    randomNumber = random.nextInt(15) + 10;
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+  }
+
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     final border = RoundedRectangleBorder(
@@ -29,22 +63,14 @@ class menuPage extends StatelessWidget {
             mainAxisSpacing: 5,
             crossAxisCount: 1,
             childAspectRatio: 4,
-
             children: <Widget>[
               ElevatedButton(
-                child: const Text('New jobs', style: TextStyle(fontSize: 20),),
-                style: ElevatedButton.styleFrom(primary: Colors.orangeAccent, shape: border),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => NewJobsPage()),
-                  );
-                },
-              ),
-
-              ElevatedButton(
-                child: const Text('My jobs', style: TextStyle(fontSize: 20),),
-                style: ElevatedButton.styleFrom(primary: Colors.orangeAccent, shape: border),
+                child: const Text(
+                  'My jobs',
+                  style: TextStyle(fontSize: 20),
+                ),
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.orangeAccent, shape: border),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -52,10 +78,27 @@ class menuPage extends StatelessWidget {
                   );
                 },
               ),
-
               ElevatedButton(
-                child: const Text('Done jobs', style: TextStyle(fontSize: 20),),
-                style: ElevatedButton.styleFrom(primary: Colors.orangeAccent, shape: border),
+                child: const Text(
+                  'New jobs',
+                  style: TextStyle(fontSize: 20),
+                ),
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.orangeAccent, shape: border),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => NewJobsPage()),
+                  );
+                },
+              ),
+              ElevatedButton(
+                child: const Text(
+                  'Earlier jobs',
+                  style: TextStyle(fontSize: 20),
+                ),
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.orangeAccent, shape: border),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -63,19 +106,22 @@ class menuPage extends StatelessWidget {
                   );
                 },
               ),
-
               ElevatedButton(
-                child: const Text('Maps', style: TextStyle(fontSize: 20),),
-                style: ElevatedButton.styleFrom(primary: Colors.orangeAccent, shape: border),
-                onPressed: _launchURLMaps
-              ),
-
+                  child: const Text(
+                    'Maps',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.orangeAccent, shape: border),
+                  onPressed: _launchURLMaps),
               ElevatedButton(
-                child: const Text('Print for special transports', style: TextStyle(fontSize: 20),),
-                style: ElevatedButton.styleFrom(primary: Colors.orangeAccent, shape: border),
-                onPressed: _launchURL
-
-              ),
+                  child: const Text(
+                    'Print for special transports',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.orangeAccent, shape: border),
+                  onPressed: _launchURL),
             ]),
       ),
     );

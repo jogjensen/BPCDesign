@@ -34,7 +34,7 @@ class donejobdesc extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "job-id: ${job!.jobId}",
+                  "Job-id: ${job!.jobId}",
                   style: const TextStyle(
                     fontSize: 20
                   ),
@@ -42,15 +42,122 @@ class donejobdesc extends StatelessWidget {
                 const SizedBox(
                   height: 12,
                 ),
-
                 Text(
-                    "Time punched: ${job!.timePunched}",
+                  "Transported: ${job!.whatIsTransported}",
+                  style: const TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  "Start address: ${job!.startAddress}",
+                  style: const TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  "End address: ${job!.endAddress}",
+                  style: const TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  "Start date: ${job!.date}",
+                  style: const TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  "Start time: ${job!.startTime}",
+                  style: const TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  "Time to escort start in hours: ${job!.timeToEscortStartInHour}:${job!.timeToEscortStartInMinutes}",
+                  style: const TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  "Time from escort end in hours: ${job!.timeFromEscortEndInHour}:${job!.timeFromEscortEndInMinute}",
+                  style: const TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  "Wait time in hours: ${job!.waitTimeInHour}:${job!.waitTimeInMinutes}",
+                  style: const TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  "Time punched: ${job!.timePunched}",
+                  style: const TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  "Ferry fee: ${job!.potentialFerryFee}",
+                  style: const TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  "Bridge fee: ${job!.potentialBridgeFee}",
+                  style: const TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  "Licenseplate: ${job!.truckLicensePlate}",
+                  style: const TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  "Licenseplate: ${job!.completionTime}",
                   style: const TextStyle(
                     fontSize: 20,
                   ),
                 ),
 
-                Text("data: ${job!.startAddress}")
+
 
               ],
             ),
