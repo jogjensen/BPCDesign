@@ -32,6 +32,7 @@ class APIService {
       var data = responseJson['data'];
       await prefs.setString('token', data['token']);
       await userPrefs.setString('userId', data['user_id']);
+      await userPrefs.setString("loggedIn", "Y");
 
       return LoginResponseModel.fromJson(json.decode(response.body));
     } else {
